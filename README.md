@@ -76,7 +76,7 @@ sysctl -w net.ipv4.tcp_wmem='768 1024 4206592'
 root soft nofile 1048576
 root hard nofile 1048576
 ```
-为了使配置生效，配置完使用命令```reboot now```来重启IM服务
+***为了使配置生效，配置完使用命令```reboot now```来重启IM服务***
 
 ## 配置压测机免密登陆
 因为压测机的数量太多，需要配置免密登陆，然后用脚本批量操作。把测试机的命名从test1到test22。配置免密的方法请自行百度解决。
@@ -113,14 +113,22 @@ JAVA_OPTS="$JAVA_OPTS -Xms24G"
 修改配置文件```config.toml```，把IM服务地址配置为IM服务的内网IP地址。
 
 ## 开始测试
-在项目目录，执行脚本```startTest.sh```。脚本会自动配置压测程序并上传到这22台服务器上，前20台服务器并发开始测试。可以登陆上这20台服务器（使用命令```ssh -o ServerAliveInterval=10 test1```，可以防止ssh超时退出 ），执行命令```tail -f nohup.out```查看连接情况，如果有连接失败的，手动登陆到test21/test22这两台服务器启动测试程序。
+在项目目录，执行脚本```startTest.sh```。脚本会自动配置压测程序并上传到这22台服务器上，前20台服务器并发开始测试。可以登陆上这20台服务器（使用命令```ssh -o ServerAliveInterval=10 test1```，可以防止ssh超时退出 ），执行命令```tail -f console.log```查看连接情况，如果有连接失败的，手动登陆到test21/test22这两台服务器启动测试程序。
 ```
 ssh -o ServerAliveInterval=10 test21
 nohup ./wfcstress > console.log 2>&1 &
 tail -f console.log
 ```
 
-连接需要一定的时间，需要耐心等待，等待所有压测机都完成连接后，等待一个小时能够保持长链接就成功完成了百万连接的测试。
+连接需要一定的时间(一般需要25分钟左右，如果有部分压测机异常中断重新启动还需要更长的时间)，需要耐心等待，等待所有压测机都完成连接后，等待一个小时能够保持长链接就成功完成了百万连接的测试。
 
 ## 测试结果
-在建立连接时，MySQL的CPU利用率是400%，IM服务的CPU利用率从700%增长到1000%。当所有连接建立之后，MySQL的CPU利用率将为0；IM服务的CPU利用率在800%，内存利用率是88%，网络连接在1000033；压测工具的CPU利用率在5%，内存利用率是60%。
+在建立连接时，MySQL的CPU利用率是400%，IM服务的CPU利用率从700%增长到1100%。
+
+当所有连接建立之后，MySQL的CPU利用率将为0；IM服务的CPU利用率在1000%，内存利用率是88%，网络连接在1000033；压测工具的CPU利用率在5%，内存利用率是60%。
+
+IM服务性能监控:
+![IM服务性能图](./asserts/im_server_performance.png)
+
+MySQL数据库性能监控:
+![MySQL性能图](./asserts/mysql_server_performance.png)
