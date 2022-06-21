@@ -1,0 +1,29 @@
+# IM服务基础配置
+[IMConfig]
+## Host为专业版授权地址，如果其它地址测测试失败。
+Host = "10.206.16.22"
+## 如果更改多客户端绑定端口，请把HttpPort改为定制的端口。
+HttpPort = 80
+AdminPort = 18080
+AdminSecret = 123456
+## Lite是否轻量模式，在lite为true时，压测工具只发送不会接收消息。如果测试聊天室功能请记得关闭此开关。
+Lite = true
+## 消息内容
+MessageContent = "这是一个很短的文本内容！"
+
+# 测试长链接。测试程序会建立UserCount个客户端并建立长链接，保持ConnDuration时长后，测试结束。
+[TestLonglinkConfig]
+## 是否开启此项测试
+Enable = true
+## 测试用户的前缀，测试用户ID为 ${UserPrefix}_i，比如UserPrefix为 HELLO_USER_ ，则测试用户为：HELLO_USER_0，HELLO_USER_1,HELLO_USER_2...。
+## 测试用户的clientid为 用户id加上 c_, 比如c_HELLO_USER_0, c_HELLO_USER_1, c_HELLO_USER_2...。
+UserPrefix = "U_"
+## 测试用户数量，单台压测机器不要超过3W，否则可能端口数不够用（电脑有6W端口，每个测试用户会占用2个端口去连接IM服务）
+UserCount = 50000
+## 用户id的起始数，如果您有多台电脑，需要确保用户id不能重复。假如有3台压测机，每台3W个测试用户，第一台的范围是0-29999，第二台的范围是30000-59999，第三台是60000-89999，
+## 则UserCount都配置为30000，第一台的UserStart设置为0，第二台的UserStart设置为30000，第三台设置为60000。如果有更多台以此类推。
+UserStart = UserStartIndex
+## 长链接保持时长，单位是秒，一般保持30分钟即可。
+ConnDuration = 18000
+## 是否跳过确认直接开始测试
+SkipConfirm = true
