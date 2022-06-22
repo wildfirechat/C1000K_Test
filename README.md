@@ -100,7 +100,7 @@ netty.epoll true
 ```
 配置```config/c3p0.xml```，把MySQL的信息填进去。
 
-配置```bin/wildfirechat.sh```，修改最大内存和最小内存为48G
+配置```bin/wildfirechat.sh```，修改最大内存和最小内存为24G
 ```
 JAVA_OPTS="$JAVA_OPTS -Xmx24G"
 JAVA_OPTS="$JAVA_OPTS -Xms24G"
