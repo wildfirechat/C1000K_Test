@@ -1,5 +1,5 @@
 #!/bin/bash
-j=22
+j=20
 for ((i=1; i<=j; i++))
 do
   x=$[(i-1) * 50000]
@@ -8,7 +8,5 @@ do
   scp config.toml.bak test${i}:~/config.toml
   scp wfcstress test${i}:~/
   rm -rf scp config.toml.bak
-  if [ $i -lt 21 ]; then
-    ssh -o ServerAliveInterval=10 test${i} "nohup ./wfcstress > console.log 2>&1 &"
-  fi
+  ssh -o ServerAliveInterval=10 test${i} "nohup ./wfcstress > console.log 2>&1 &"
 done
