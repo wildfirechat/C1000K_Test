@@ -1,7 +1,7 @@
 # IM服务基础配置
 [IMConfig]
 ## Host为专业版授权地址，如果其它地址测测试失败。
-Host = "10.206.16.26"
+Host = "10.206.16.28"
 ## 如果更改多客户端绑定端口，请把HttpPort改为定制的端口。
 HttpPort = 80
 AdminPort = 18080
@@ -24,6 +24,6 @@ UserCount = 50000
 ## 则UserCount都配置为30000，第一台的UserStart设置为0，第二台的UserStart设置为30000，第三台设置为60000。如果有更多台以此类推。
 UserStart = UserStartIndex
 ## 长链接保持时长，单位是秒，一般保持30分钟即可。
-ConnDuration = 18000
+ConnDuration = 3600
 ## 是否跳过确认直接开始测试
 SkipConfirm = true
