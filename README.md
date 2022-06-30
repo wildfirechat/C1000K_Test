@@ -128,4 +128,4 @@ MySQL数据库性能监控:
 
 ## 操作视频
 为了帮助大家自行进行测试，我们录制了视频放到了B站，请点击下面视频观看:
-<a href="https://www.bilibili.com/video/BV1TZ4y1e7Ct/?vd_source=386f4a4af6fd6cf315d83dc77f52d367"><img src="./asserts/bilibili_video_cover.png" alt="操作视频"></a>
+<a href="https://www.bilibili.com/video/BV1TZ4y1e7Ct"><img src="./asserts/bilibili_video_cover.png" alt="操作视频"></a>
