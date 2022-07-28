@@ -121,11 +121,11 @@ JAVA_OPTS="$JAVA_OPTS -XX:MaxDirectMemorySize=4G"
 当所有连接建立之后，MySQL的CPU利用率降为0；IM服务的CPU利用率在1000%，内存利用率是81%，端口1883的网络连接在1000000；成功保持30分钟，一百万连接全都正常保持长链接，没有断开掉线的情况。
 
 IM服务性能监控:
-![IM服务性能图](./asserts/im_server_performance.png)
+![IM服务性能图](./assets/im_server_performance.png)
 
 MySQL数据库性能监控:
-![MySQL性能图](./asserts/mysql_server_performance.png)
+![MySQL性能图](./assets/mysql_server_performance.png)
 
 ## 操作视频
 为了帮助大家自行进行测试，我们录制了视频放到了B站，请点击下面视频观看:
-<a href="https://www.bilibili.com/video/BV1TZ4y1e7Ct"><img src="./asserts/bilibili_video_cover.png" alt="操作视频"></a>
+<a href="https://www.bilibili.com/video/BV1TZ4y1e7Ct"><img src="./assets/bilibili_video_cover.png" alt="操作视频"></a>
