@@ -30,43 +30,35 @@ yum install java-1.8.0-openjdk-headless.x86_64
 ```
 
 ## 优化IM服务器配置
-购买的云服务器默认的系统设置是不能支持百万连接的，需要优化系统设置。在命令行执行：
+购买的云服务器默认的系统设置是不能支持百万连接的，需要优化系统设置。修改系统文件 ```/etc/sysctl.conf```，在最后添加如下配置并保存：
 ```
-sysctl -w fs.file-max=2000000
-sysctl -w fs.nr_open=2000000
+fs.file-max=2000000
+fs.nr_open=2000000
 
-sysctl -w net.core.somaxconn=10240
-sysctl -w net.ipv4.tcp_max_syn_backlog=16384
-sysctl -w net.ipv4.tcp_syncookies=0
+net.core.somaxconn=10240
+net.ipv4.tcp_max_syn_backlog=16384
+net.ipv4.tcp_syncookies=0
 
-sysctl -w net.core.netdev_max_backlog=16384
+net.core.netdev_max_backlog=16384
 
-sysctl -w net.ipv4.tcp_max_tw_buckets=1048576
+net.ipv4.tcp_max_tw_buckets=1048576
 
-sysctl -w net.ipv4.tcp_tw_reuse=1
-sysctl -w net.ipv4.tcp_tw_recycle=1
+net.ipv4.tcp_tw_reuse=1
 
-sysctl -w net.ipv4.tcp_keepalive_intvl=30
-sysctl -w net.ipv4.tcp_keepalive_time=900
-sysctl -w net.ipv4.tcp_keepalive_probes=3
+net.ipv4.tcp_keepalive_intvl=30
+net.ipv4.tcp_keepalive_time=900
+net.ipv4.tcp_keepalive_probes=3
 
-sysctl -w net.ipv4.tcp_fin_timeout=15
+net.ipv4.tcp_fin_timeout=15
 
-sysctl -w net.ipv4.tcp_max_orphans=131072
+net.ipv4.tcp_max_orphans=131072
 
-sysctl -w net.netfilter.nf_conntrack_max=1000000
-sysctl -w net.netfilter.nf_conntrack_tcp_timeout_time_wait=30
+net.core.optmem_max=819200
 
-sysctl -w net.core.optmem_max=819200
-
-sysctl -w net.core.rmem_default=262144
-sysctl -w net.core.wmem_default=262144
-sysctl -w net.core.rmem_max=16777216
-sysctl -w net.core.wmem_max=16777216
-
-sysctl -w net.ipv4.tcp_mem='786432 4194304 8388608'
-sysctl -w net.ipv4.tcp_rmem='1024 1024 4206592'
-sysctl -w net.ipv4.tcp_wmem='1024 1024 4206592'
+net.core.rmem_default=262144
+net.core.wmem_default=262144
+net.core.rmem_max=16777216
+net.core.wmem_max=16777216
 ```
 另外修改```/etc/security/limits.conf```文件，把```nofile```设置为1048576，如下所示：
 ```
