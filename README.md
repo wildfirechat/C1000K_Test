@@ -44,6 +44,7 @@ net.core.netdev_max_backlog=16384
 net.ipv4.tcp_max_tw_buckets=1048576
 
 net.ipv4.tcp_tw_reuse=1
+net.ipv4.tcp_tw_recycle=0
 
 net.ipv4.tcp_keepalive_intvl=30
 net.ipv4.tcp_keepalive_time=900
